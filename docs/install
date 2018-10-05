@@ -40,4 +40,5 @@ _EOF_
     exit 2
 fi
 
+set +ex
 echo "Installation succeeded!"
