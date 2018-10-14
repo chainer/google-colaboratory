@@ -20,7 +20,7 @@ fi
 if [ -d /usr/local/cuda-9.2 ]; then
     # For CUDA 9.2 container
     set -ex
-    #apt -y -q install cuda-libraries-dev-9-2
+    apt -y -q install cuda-libraries-dev-9-2
     pip install -q "cupy-cuda92 ${CUPY_VERSION}" "chainer ${CHAINER_VERSION}"
 
 elif [ -e /usr/lib/x86_64-linux-gnu/libcudart.so.8.0 ]; then
