@@ -1,0 +1,44 @@
+#!/bin/sh
+
+#
+# Chainer (with ChainerX) / CuPy Installer for Google Colaboratory
+# https://github.com/chainer/google-colaboratory
+#
+
+
+if ! which nvidia-smi > /dev/null; then
+    cat << '_EOF_'
+********************************************************************************
+GPU is not enabled!
+Open "Runtime" > "Change runtime type" and set "Hardware accelerator" to "GPU".
+********************************************************************************
+_EOF_
+    exit 1
+fi
+
+
+if [ -d /usr/local/cuda-9.2 ]; then
+    # For CUDA 9.2 container
+    set -ex
+    apt -y -q install \
+        cuda-libraries-dev-9-2 \
+        "libcudnn7-dev=$(dpkg-query --show --showformat '${Version}' libcudnn7)" \
+        cmake libblas3 libblas-dev
+    apt -y -q purge libatlas3-base libatlas-base-dev
+
+    pip install --pre -q "cupy-cuda92 ${CUPY_VERSION}"
+    echo "Building Chainer with ChainerX support. This may take a while..."
+    CHAINER_BUILD_CHAINERX=1 CHAINERX_BUILD_CUDA=1 pip install --pre "chainer ${CHAINER_VERSION}"
+
+else
+    cat << '_EOF_'
+********************************************************************************
+CUDA version could not be detected!
+Please file an issue at: https://github.com/chainer/google-colaboratory/issues/new
+********************************************************************************
+_EOF_
+    exit 2
+fi
+
+set +ex
+echo "Installation succeeded!"
