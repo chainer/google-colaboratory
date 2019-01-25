@@ -6,7 +6,7 @@
 #
 
 
-if ! which nvidia-smi > /dev/null; then
+if ! nvidia-smi > /dev/null; then
     cat << '_EOF_'
 ********************************************************************************
 GPU is not enabled!
