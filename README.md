@@ -33,6 +33,12 @@ You can still use the following snippet to install specific versions of Chainer 
 !curl https://colab.chainer.org/install | CHAINER_VERSION="==5.1.0" CUPY_VERSION="==5.1.0" sh -
 ```
 
+To install Chainer with ChainerX support (experimental), use the following snippet.
+
+```
+!curl https://colab.chainer.org/install-chainerx | sh -
+```
+
 ## Examples
 
 * [MNIST Example](https://drive.google.com/file/d/1SsxHvQdSz23kaVov8yKizVD3_2tkXdZM/view) (by @mitmul)
