@@ -40,7 +40,7 @@ else
     cat << '_EOF_'
 ********************************************************************************
 CUDA version could not be detected!
-Please file an issue at: https://github.com/chainer/google-colaboratory/issues/new
+Try installing Chainer manually by: pip install chainer
 ********************************************************************************
 _EOF_
     exit 2
